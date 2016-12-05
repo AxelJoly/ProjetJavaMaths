@@ -12,6 +12,8 @@ public class Main {
         LOGGER.info("vibouille est un enfant");
         LOGGER.info("Test");
         LOGGER.info("vibouille est un enfant ");
+        LOGGER.info("vibouille est un enfant ");
+
 
     }
 }
