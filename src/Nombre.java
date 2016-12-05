@@ -3,12 +3,18 @@
  */
 public abstract class  Nombre {
     protected double taille;
-    protected float aj;
+    protected Complexe[] aj;
     public  Nombre(int N){
         taille=Math.pow(2, N);
 
     }
-    public  float calculFourierRapideReel(){
+    public  Complexe[] calculFourierRapide(Complexe[] uk){
+
+        return(aj);
+
+    }
+
+    public  Complexe[] calculFourierRapideComplexeInverse(Complexe [] uk){
 
         return(aj);
 
