@@ -36,7 +36,7 @@ public class Main {
 
         Complexe[] tab = {new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0)};
         Complexe[] result;
-        Reel re = new Reel(2);
+        Nombre re = new Nombre(2);
        result = re.calculFourierRapide(tab);
 
         int length = result.length;
