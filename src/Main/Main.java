@@ -3,6 +3,8 @@ package Main;
 import Model.Complexe;
 import Model.MusicThread;
 import Model.Nombre;
+import View.Frame;
+import org.omg.CORBA.FREE_MEM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +45,8 @@ public class Main {
         for (int i = 0; i < length; i++){
             LOGGER.info(result[i].toString());
         }
+        Frame frame = new Frame();
+        frame.display();
 
         Thread music = new Thread(new MusicThread());
         music.start();
