@@ -1,3 +1,7 @@
+package Model;
+
+import Model.Complexe;
+
 /**
  * Created by maxim on 05/12/2016.
  */
