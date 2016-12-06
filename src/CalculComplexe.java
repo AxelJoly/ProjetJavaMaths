@@ -27,7 +27,7 @@ public class CalculComplexe extends Reel {
         for (int i = 0; i < n; i++) {
             aj[i] = aj[i].scale(1.0 / n);
         }
-
+             
         return aj;
     }
 }
