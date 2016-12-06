@@ -22,6 +22,7 @@ public class Main {
         LOGGER.info("vibouille est un enfant ");
         LOGGER.info("vibouille est un enfant ");
         LOGGER.info("vibouille est un enfant ");
+        LOGGER.info("vibouille est un enfant ");
         Complexe com=new Complexe(2,4);
         LOGGER.info(com.cos().toString());
 
