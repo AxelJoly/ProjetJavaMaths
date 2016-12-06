@@ -51,30 +51,30 @@ public class  Nombre {
 
 
 
-    public  Complexe[] calculFourierRapideComplexeInverse(Complexe [] uk){
+    public  Complexe[] calculFourierRapideComplexeInverse(Complexe [] aj){
 
-        int n = uk.length;
-        Complexe[] aj = new Complexe[n];
+        int n = aj.length;
+        Complexe[] uk = new Complexe[n];
 
         // On prend le conjugué de uk et on le met ds aj
         for (int i = 0; i < n; i++) {
-            aj[i] = uk[i].conjugate();
+            uk[i] = aj[i].conjugate();
         }
 
         // On cfait le calcul de serie de fourrier rapide de aj et on le met dans aj
-        aj = calculFourierRapide(aj);
+        uk= calculFourierRapide(uk);
 
         // On refait le conjugué de aj et on le remet dans aj
         for (int i = 0; i < n; i++) {
-            aj[i] = aj[i].conjugate();
+            uk[i] = uk[i].conjugate();
         }
 
         // On divise par n
         for (int i = 0; i < n; i++) {
-            aj[i] = aj[i].scale(1.0 / n);
+            uk[i] = uk[i].scale(1.0 / n);
         }
 
-        return aj;
+        return uk;
 
     }
 }

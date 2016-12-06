@@ -7,16 +7,16 @@ import java.lang.*;
  * Created by maxim on 05/12/2016.
  */
 public class Complexe extends Object {
-    private final double re;   // the real part
-    private final double im;   // the imaginary part
+    private final double re;   // La partie réel
+    private final double im;   // La partie imaginaire
 
-    // create a new object with the given real and imaginary parts
+    //Le constructeur
     public Complexe(double real, double imag) {
         this.re = real;
         this.im = imag;
     }
 
-    // return a string representation of the invoking Complex object
+    //Afficher le nombre complexe
     public String toString() {
         if (im == 0) return re + "";
         if (re == 0) return im + "i";
@@ -24,17 +24,17 @@ public class Complexe extends Object {
         return re + " + " + im + "i";
     }
 
-    // return abs/modulus/magnitude
+    //On fait le module du nombre complexe
     public double abs() {
         return Math.hypot(re, im);
     }
 
-    // return angle/phase/argument, normalized to be between -pi and pi
+    // retourne la phase
     public double phase() {
         return Math.atan2(im, re);
     }
 
-    // return a new Complex object whose value is (this + b)
+    // Additione deux complexes
     public Complexe plus(Complexe b) {
         Complexe a = this;             // invoking object
         double real = a.re + b.re;
@@ -42,7 +42,7 @@ public class Complexe extends Object {
         return new Complexe(real, imag);
     }
 
-    // return a new Complex object whose value is (this - b)
+    // Soustrait deux complexes
     public Complexe minus(Complexe b) {
         Complexe a = this;
         double real = a.re - b.re;
@@ -50,7 +50,7 @@ public class Complexe extends Object {
         return new Complexe(real, imag);
     }
 
-    // return a new Complex object whose value is (this * b)
+    //Multiplie deux complexes
     public Complexe times(Complexe b) {
         Complexe a = this;
         double real = a.re * b.re - a.im * b.im;
@@ -58,55 +58,55 @@ public class Complexe extends Object {
         return new Complexe(real, imag);
     }
 
-    // return a new object whose value is (this * alpha)
+    //Multiplie un complexe par un coefficient
     public Complexe scale(double alpha) {
         return new Complexe(alpha * re, alpha * im);
     }
 
-    // return a new Complex object whose value is the conjugate of this
+    //Calcule le conjugué d'un complexe
     public Complexe conjugate() {
         return new Complexe(re, -im);
     }
 
-    // return a new Complex object whose value is the reciprocal of this
+    // Calcul la reciproque d'un objet
     public Complexe reciprocal() {
         double scale = re*re + im*im;
         return new Complexe(re / scale, -im / scale);
     }
 
-    // return the real or imaginary part
+    // retourne soit la aprtie réel ou soit la partie imaginaire d'un complexe
     public double re() { return re; }
     public double im() { return im; }
 
-    // return a / b
+    // divise dun complexe avec un autre
     public Complexe divides(Complexe b) {
         Complexe a = this;
         return a.times(b.reciprocal());
     }
 
-    // return a new Complex object whose value is the complex exponential of this
+    // retourne l'exponentiel d'un nombre complexe
     public Complexe exp() {
         return new Complexe(Math.exp(re) * Math.cos(im), Math.exp(re) * Math.sin(im));
     }
 
-    // return a new Complex object whose value is the complex sine of this
+    // retourne le sinus d'un nombre complexe
     public Complexe sin() {
         return new Complexe(Math.sin(re) * Math.cosh(im), Math.cos(re) * Math.sinh(im));
     }
 
-    // return a new Complex object whose value is the complex cosine of this
+    // retourne le cosinus d'un nombre complexe
     public Complexe cos() {
         return new Complexe(Math.cos(re) * Math.cosh(im), -Math.sin(re) * Math.sinh(im));
     }
 
-    // return a new Complex object whose value is the complex tangent of this
+    // retourne la tangente d'un nombre complexe
     public Complexe tan() {
         return sin().divides(cos());
     }
 
 
 
-    // a static version of plus
+    // Additioner deux complexes passé en parametre
     public static Complexe plus(Complexe a, Complexe b) {
         double real = a.re + b.re;
         double imag = a.im + b.im;
@@ -114,7 +114,7 @@ public class Complexe extends Object {
         return sum;
     }
 
-    // See Section 3.3.
+    // test si deux complexes sont égaux 
     public boolean equals(Object x) {
         if (x == null) return false;
         if (this.getClass() != x.getClass()) return false;
