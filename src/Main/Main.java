@@ -15,6 +15,20 @@ import org.slf4j.LoggerFactory;
 public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
+    public Main() {
+        LOGGER.info("mdr ca marche");
+
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("Test");
+        LOGGER.info("vibouille est un enfant ");
+        LOGGER.info("vibouille est un enfant ");
+        LOGGER.info("vibouille est un enfant ");
+        LOGGER.info("vibouille est un enfant ");
+        LOGGER.info("vibouille est un enfant ");
+        // Complexe com=new Complexe(2,4);
+        //LOGGER.info(com.cos().toString());
+    }
+
 
     public static void main (String args[]){
         new Main();
