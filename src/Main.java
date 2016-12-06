@@ -26,18 +26,10 @@ public class Main {
         Complexe com=new Complexe(2,4);
         LOGGER.info(com.cos().toString());
 
-        try{
+        Thread music = new Thread(new MusicThread());
+        music.start();
 
-            //FileInputStream fis = new FileInputStream("bip.mp3");
-           // Player playMP3 = new Player(fis);
-
-
-           // playMP3.play();
-
-        }catch(Exception e){
-            System.out.println(e);
-        }
-
+        
     }
     public static void main (String args[]){
         new Main();
