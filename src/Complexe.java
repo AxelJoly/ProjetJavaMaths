@@ -12,8 +12,8 @@ public class Complexe extends Object {
 
     // create a new object with the given real and imaginary parts
     public Complexe(double real, double imag) {
-        re = real;
-        im = imag;
+        this.re = real;
+        this.im = imag;
     }
 
     // return a string representation of the invoking Complex object
