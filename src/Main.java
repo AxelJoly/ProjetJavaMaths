@@ -23,16 +23,15 @@ public class Main {
         LOGGER.info("vibouille est un enfant ");
         LOGGER.info("vibouille est un enfant ");
         Complexe com=new Complexe(2,4);
-
         LOGGER.info(com.cos().toString());
 
         try{
 
-            FileInputStream fis = new FileInputStream("noel.mp3");
-            Player playMP3 = new Player(fis);
+            //FileInputStream fis = new FileInputStream("bip.mp3");
+           // Player playMP3 = new Player(fis);
 
 
-            playMP3.play();
+           // playMP3.play();
 
         }catch(Exception e){
             System.out.println(e);
@@ -41,5 +40,16 @@ public class Main {
     }
     public static void main (String args[]){
         new Main();
+
+        Complexe[] tab = {new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0)};
+        Complexe[] result;
+        Reel re = new Reel(2);
+       result = re.calculFourierRapide(tab);
+
+        int length = result.length;
+
+        for (int i = 0; i < length; i++){
+            LOGGER.info(result[i].toString());
+        }
     }
 }

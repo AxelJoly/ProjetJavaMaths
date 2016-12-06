@@ -39,7 +39,7 @@ public class Reel extends Nombre {
             double kth = -2 * k * Math.PI / n;
             Complexe wk = new Complexe(Math.cos(kth), Math.sin(kth));// On initialise Wn^j
             aj[k]       = q[k].plus(wk.times(r[k]));//On traite le cas j<n/2
-            aj[k + n/2] = q[k].plus(wk.times(r[k]));// On traite le cas j>n/2
+            aj[k + n/2] = q[k].minus(wk.times(r[k]));// On traite le cas j>n/2
         }
 
         return (aj);
