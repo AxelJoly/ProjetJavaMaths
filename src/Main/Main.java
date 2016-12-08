@@ -36,7 +36,7 @@ public class Main {
         int taille;
         double il;
         double increment ;
-        increment=3.14/16;
+        increment=3.14/4;
         Complexe[] tab = {new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0)};
         Complexe[] result;
         Complexe[] tab2 = new Complexe[1000];
@@ -47,7 +47,11 @@ public class Main {
             il=il+increment;
             compt++;
         }
-        Echantillonage ech=new Echantillonage(4,16,tab2);
+        Complexe[] tab3=new Complexe[1000];
+        for(int i=0;i<4;i++){
+            tab3[i]= new Complexe(i,0);
+        }
+      /*  Echantillonage ech=new Echantillonage(4,16,tab2);
         ech.rempliTab0();
         ech.calculColonneAj();
         for(int j=0;j<(ech.getNbPoints()/ech.getEchantillonage()); j++) {
@@ -72,7 +76,7 @@ public class Main {
             for (int i = 0; i < (ech.getEchantillonage())/2; i++) {
                 LOGGER.info(ech.getMatrice()[j][i].toString());
             }
-        }
+        }*/
 
 
 
@@ -116,11 +120,11 @@ public class Main {
         }*/
 
         Echantillonage ech1 = null;
-        FrameController controller = new FrameController(tab);
+        FrameController controller = new FrameController();
         Thread music = new Thread(new MusicThread());
-       // music.start();
+       music.start();
 
-        Frame frame = new Frame(tab, controller);
+        Frame frame = new Frame(controller);
         controller.init(frame);
         frame.display();
 

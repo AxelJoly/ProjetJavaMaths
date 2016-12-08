@@ -3,13 +3,11 @@ package Model;
 import Model.Complexe;
 import Model.Nombre;
 
-import java.util.Observable;
-
 /**
  * Created by maxim on 07/12/2016.
  */
 
-public class Echantillonage extends Observable{
+public class Echantillonage {
     protected Complexe matrice[][];
     protected int echantillonage;
     protected int nbPoints ;
@@ -17,14 +15,14 @@ public class Echantillonage extends Observable{
     protected Complexe tabPts[];
     protected Nombre nb;
 
-    public Echantillonage (int echantillonage ,int nbPoints,Complexe[] tabPts){
+    public Echantillonage (int echantillonage,int nbPoints,Complexe tabPts[]){
         this.echantillonage=echantillonage;
         this.nbPoints=nbPoints;
         this.tabPts=tabPts;
         this.nb=new Nombre(2);
         this.matrice=new Complexe[nbPoints+echantillonage][echantillonage+1];
-        setChanged();
-        notifyObservers(this.tabPts);
+        this.nbFenetre=0;
+
 
 
 
@@ -33,19 +31,16 @@ public class Echantillonage extends Observable{
         int i,compt;
         Complexe temp;
         temp=new Complexe(0,0);
+        for(int k=this.nbPoints+1;k>0;k--){
 
-        for(int k=this.nbPoints;k>0;k--){
-            System.out.println(k);
-            this.tabPts[k]=this.tabPts[k-1];
+            tabPts[k]=tabPts[k-1];
 
 
         }
-
-
         tabPts[0]= new Complexe(0,0);
         this.nbPoints=this.nbPoints+1;
 
-        if((nbPoints%this.echantillonage)==0){
+       /* if((nbPoints%this.echantillonage)==0){
             this.nbFenetre=(this.nbPoints)/(this.echantillonage);
             System.out.println("this.nbfenetre"+this.nbFenetre);
         }
@@ -56,7 +51,7 @@ public class Echantillonage extends Observable{
 
             nbFenetre++;
         }
-        compt=1;
+        compt=1;*/
        /* while(this.nbPoints%this.echantillonage!=0){
 
             this.tabPts[compt+this.nbPoints]= new Complexe(0,0);
@@ -66,7 +61,6 @@ public class Echantillonage extends Observable{
         }*/
         System.out.println("this.nbpoitns"+this.nbPoints);
 
-
     }
     public void calculColonneAj(){
         int i,j,compt,compt2,compt3;
@@ -75,7 +69,7 @@ public class Echantillonage extends Observable{
         //System.out.println("nbPoints="+this.nbPoints);
         compt2=0;
         compt3=0;
-       for(i=0;i<this.nbPoints;i=(i+this.echantillonage)-1){
+        for(i=0;i<this.nbPoints;i=(i+this.echantillonage)-1){
             compt=0;
             //System.out.println("i="+i);
             for(j=(i);j<i+(this.echantillonage);j++){
@@ -84,29 +78,26 @@ public class Echantillonage extends Observable{
                     //this.nbPoints++;
                     compt3++;
                 }
-               temp[compt]=tabPts[j];
+                temp[compt]=tabPts[j];
                 System.out.println("j="+j);
                 System.out.println("compt="+compt);
 
-               System.out.println(temp[compt]);
+                System.out.println(temp[compt]);
                 compt++;
             }
 
 
 
-          this.matrice[compt2]=nb.calculFourierRapide(temp);
+            this.matrice[compt2]=nb.calculFourierRapide(temp);
             compt2++;
+            this.nbFenetre++;
 
 
         }
-          for(i=0;i<compt3;i++){
-               this.nbPoints++;
-           }
-        setChanged();
-        notifyObservers(this.matrice);
+        for(i=0;i<compt3;i++){
+            this.nbPoints++;
+        }
     }
-
-
     public void selectioneAj(){
         for(int i=0;i<this.nbPoints/this.echantillonage;i++){
             for(int j=0;j<(this.echantillonage)/2;j++){
@@ -123,8 +114,6 @@ public class Echantillonage extends Observable{
                 this.matrice[i][j]=(this.matrice[i][j]).abs();
             }
         }
-        setChanged();
-        notifyObservers(this.matrice);
     }
 
 
@@ -175,6 +164,4 @@ public class Echantillonage extends Observable{
     public void setNb(Nombre nb) {
         this.nb = nb;
     }
-
-
 }
