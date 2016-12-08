@@ -53,6 +53,15 @@ public class Main {
                 LOGGER.info(ech.getMatrice()[j][i].toString());
             }
         }
+        ech.moduleAj();
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("vibouille est un enfant");
+        for(int j=0;j<(ech.getNbPoints()/ech.getEchantillonage());j++) {
+            for (int i = 0; i < (ech.getEchantillonage())/2; i++) {
+                LOGGER.info(ech.getMatrice()[j][i].toString());
+            }
+        }
 
 
 

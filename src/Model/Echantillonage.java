@@ -98,9 +98,18 @@ public class Echantillonage {
         for(int i=0;i<this.nbPoints/this.echantillonage;i++){
             for(int j=0;j<(this.echantillonage)/2;j++){
                 this.matrice[i][j]=this.matrice[i][this.echantillonage-1-j];
+                this.matrice[i][this.echantillonage-1-j]=null;
             }
         }
+
         //this.echantillonage=(this.echantillonage)/2;
+    }
+    public void moduleAj(){
+        for(int i=0;i<this.nbPoints/this.echantillonage;i++){
+            for(int j=0;j<(this.echantillonage)/2;j++){
+                this.matrice[i][j]=(this.matrice[i][j]).abs();
+            }
+        }
     }
 
 

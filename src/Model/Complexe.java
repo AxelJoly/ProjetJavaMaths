@@ -27,8 +27,10 @@ public class Complexe extends Object {
     }
 
     //On fait le module du nombre complexe
-    public double abs() {
-        return Math.hypot(re, im);
+    public Complexe abs() {
+        double temp;
+        temp=Math.hypot(re, im);
+        return(new Complexe(temp,0));
     }
 
     // retourne la phase
