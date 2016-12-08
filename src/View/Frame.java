@@ -2,6 +2,7 @@ package View;
 
 import Controller.FrameController;
 import Model.Complexe;
+import Model.Echantillonage;
 import Model.Nombre;
 
 import javax.swing.*;
@@ -25,12 +26,16 @@ public class Frame implements ActionListener, Observer {
     private JSpinner spinner = null;
     private JComboBox powList = null;
     private JLabel labelAChanger = null;
-    private Complexe[] tab = {new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0)};
-    private Nombre nombre = null;
+    private Complexe[] tab = null;
+    private Result result = null;
+    private Echantillonage echantillonage = null;
 
-    public Frame(Nombre nombre, FrameController controller){
-        this.nombre = nombre;
-        this.nombre.addObserver(this);
+    public Frame(Complexe[] tab, FrameController controller){
+        this.tab = tab;
+        for(int i=0; i< tab.length; i++) {
+            this.tab[i].addObserver(this);
+        }
+
         this.controller = controller;
         buildFrame();
     }
@@ -71,7 +76,7 @@ public class Frame implements ActionListener, Observer {
        JPanel bPane = new JPanel();
         bPane.setLayout(new GridLayout(3,3));
 
-       JLabel label = new JLabel("Nombre d'échantillon par sec");
+       JLabel label = new JLabel("Nombre de points du tableau");
         tPane.add(label, BorderLayout.CENTER);
 
         format = NumberFormat.getNumberInstance();
@@ -83,7 +88,7 @@ public class Frame implements ActionListener, Observer {
          SpinnerNumberModel spinnerModel =  new SpinnerNumberModel(
                 new Integer(0),
                 new Integer(0),
-                new Integer(100),
+                new Integer(1000),
                 new Integer(5)
         );
         spinner = new JSpinner(spinnerModel);
@@ -122,8 +127,13 @@ public class Frame implements ActionListener, Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Integer nb = (Integer) powList.getSelectedItem();
-       this.controller.notifyNombreChanged(this.tab, nb);
+        Integer nbEchantillonage = (Integer) powList.getSelectedItem();
+        Integer nbValeur = (Integer) spinner.getValue();
+        System.out.println(nbEchantillonage);
+        System.out.println(nbValeur);
+       this.controller.notifyNombreChanged(this.tab, nbValeur, nbEchantillonage);
+        result = new Result(this.controller.getEchantillonage(), nbValeur);
+        result.display();
     }
 
     @Override

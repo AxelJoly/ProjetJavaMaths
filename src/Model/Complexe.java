@@ -3,12 +3,13 @@ package Model;
 import java.lang.Object;
 //import java.util.Objects;
 import java.lang.*;
+import java.util.Observable;
 
 
 /**
  * Created by maxim on 05/12/2016.
  */
-public class Complexe extends Object {
+public class Complexe extends Observable{
     private final double re;   // La partie réel
     private final double im;   // La partie imaginaire
 
@@ -16,6 +17,7 @@ public class Complexe extends Object {
     public Complexe(double real, double imag) {
         this.re = real;
         this.im = imag;
+
     }
 
     //Afficher le nombre complexe
@@ -111,7 +113,7 @@ public class Complexe extends Object {
 
 
     // Additioner deux complexes passé en parametre
-    public static Complexe plus(Complexe a, Complexe b) {
+    public Complexe plus(Complexe a, Complexe b) {
         double real = a.re + b.re;
         double imag = a.im + b.im;
         Complexe sum = new Complexe(real, imag);
@@ -119,7 +121,7 @@ public class Complexe extends Object {
     }
 
     // test si deux complexes sont égaux 
-    public boolean equals(Object x) {
+    /*public boolean equals(Object x) {
         if (x == null) return false;
         if (this.getClass() != x.getClass()) return false;
         Complexe that = (Complexe) x;

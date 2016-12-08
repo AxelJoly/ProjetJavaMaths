@@ -3,11 +3,13 @@ package Model;
 import Model.Complexe;
 import Model.Nombre;
 
+import java.util.Observable;
+
 /**
  * Created by maxim on 07/12/2016.
  */
 
-public class Echantillonage {
+public class Echantillonage extends Observable{
     protected Complexe matrice[][];
     protected int echantillonage;
     protected int nbPoints ;
@@ -15,13 +17,14 @@ public class Echantillonage {
     protected Complexe tabPts[];
     protected Nombre nb;
 
-    public Echantillonage (int echantillonage,int nbPoints,Complexe tabPts[]){
+    public Echantillonage (int echantillonage ,int nbPoints,Complexe[] tabPts){
         this.echantillonage=echantillonage;
         this.nbPoints=nbPoints;
         this.tabPts=tabPts;
         this.nb=new Nombre(2);
         this.matrice=new Complexe[nbPoints+echantillonage][echantillonage+1];
-
+        setChanged();
+        notifyObservers(this.tabPts);
 
 
 
@@ -30,12 +33,15 @@ public class Echantillonage {
         int i,compt;
         Complexe temp;
         temp=new Complexe(0,0);
-        for(int k=this.nbPoints+1;k>0;k--){
 
-            tabPts[k]=tabPts[k-1];
+        for(int k=this.nbPoints;k>0;k--){
+            System.out.println(k);
+            this.tabPts[k]=this.tabPts[k-1];
 
 
         }
+
+
         tabPts[0]= new Complexe(0,0);
         this.nbPoints=this.nbPoints+1;
 
@@ -59,6 +65,7 @@ public class Echantillonage {
 
         }*/
         System.out.println("this.nbpoitns"+this.nbPoints);
+
 
     }
     public void calculColonneAj(){
@@ -95,7 +102,11 @@ public class Echantillonage {
           for(i=0;i<compt3;i++){
                this.nbPoints++;
            }
+        setChanged();
+        notifyObservers(this.matrice);
     }
+
+
     public void selectioneAj(){
         for(int i=0;i<this.nbPoints/this.echantillonage;i++){
             for(int j=0;j<(this.echantillonage)/2;j++){
@@ -112,6 +123,8 @@ public class Echantillonage {
                 this.matrice[i][j]=(this.matrice[i][j]).abs();
             }
         }
+        setChanged();
+        notifyObservers(this.matrice);
     }
 
 
@@ -162,4 +175,6 @@ public class Echantillonage {
     public void setNb(Nombre nb) {
         this.nb = nb;
     }
+
+
 }

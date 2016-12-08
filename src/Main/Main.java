@@ -12,6 +12,8 @@ import View.Frame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+
 
 /**
  * Created by axel on 05/12/2016.
@@ -29,6 +31,7 @@ public class Main {
 
 
     public static void main (String args[]){
+
         int  compt=0;
         int taille;
         double il;
@@ -73,7 +76,7 @@ public class Main {
 
 
 
-
+/*
         Nombre re = new Nombre(2);
        result = re.calculFourierRapide(tab);
         LOGGER.info("tab fichier texte");
@@ -108,14 +111,16 @@ public class Main {
         }
         int length = result.length;
 
-      /*  for (int i = 0; i < length; i++){
+       for (int i = 0; i < length; i++){
             LOGGER.info(result[i].toString());
         }*/
-        FrameController controller = new FrameController(re);
+
+        Echantillonage ech1 = null;
+        FrameController controller = new FrameController(tab);
         Thread music = new Thread(new MusicThread());
        // music.start();
 
-        Frame frame = new Frame(re, controller);
+        Frame frame = new Frame(tab, controller);
         controller.init(frame);
         frame.display();
 

@@ -1,5 +1,10 @@
 package View;
 
+
+
+import Model.Complexe;
+import Model.Echantillonage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,11 +21,13 @@ public class Result implements ActionListener, Observer{
         private JFrame frame = null;
         private JPanel fPane = null;
         private JButton button = null;
-        private NumberFormat format = null;
-        private JSpinner spinner = null;
-        private JComboBox powList = null;
+        private Echantillonage echantillonage = null;
+        private Integer taille = null;
+    public Result(Echantillonage echantillonage, Integer taille){
+        this.echantillonage = echantillonage;
 
-    public Result(){
+        this.taille = taille;
+
         buildFrame();
     }
 
@@ -31,7 +38,40 @@ public class Result implements ActionListener, Observer{
         JLabel label = new JLabel("Nombre d'échantillon par sec");
         fPane.add(label, BorderLayout.CENTER);
 
+        button = new JButton("Quitter");
+        fPane.add(button, BorderLayout.SOUTH);
+        Complexe[][] tabComplexe = echantillonage.getMatrice();
+        String[] tab = null;
+        for(int i = 0; i< echantillonage.getNbPoints()/echantillonage.getEchantillonage(); i++)
+        {
+            for(int j = 0; j < Math.pow(2, taille); j++){
+                tab[i] = tab[i] + tabComplexe[i][j];
+            }
+        }
+        JList list = new JList(tab); //data has type Object[]
+        JScrollPane listScroller = new JScrollPane(list);
+        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        list.setVisibleRowCount(-1);
 
+
+        listScroller.setPreferredSize(new Dimension(500, 200));
+        fPane.add(listScroller, BorderLayout.CENTER);
+
+        /*
+        DefaultPieDataset data=new DefaultPieDataset();
+    data.setValue("Category1",43.2);
+    data.setValue("Category2",27.9);
+    data.setValue("Category3",79.5);
+
+    //create a chart...
+    JFreeChart chart=ChartFactory.createPieChart( "SamplePieChart", data, true/legend?/,true/*tooltips?, falseURLs?);
+
+        //create and display a frame...
+        ChartFrame frame=new ChartFrame("First",chart);
+         */
+        button.addActionListener(this);
+        frame.setContentPane(fPane);
         frame.setTitle("Projet Java Maths");
         frame.pack();
     }
@@ -51,13 +91,13 @@ public class Result implements ActionListener, Observer{
     public void actionPerformed(ActionEvent e) {
 
         //  this.controller.notifyVolumeChanged(Integer.parseInt(this.spinner.getValue().toString()));
+        close();
     }
 
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Integer) {
-            spinner.setValue((Integer) arg);
-            powList.setSelectedIndex((Integer) arg);
+
             System.out.println("[Frame] : update");
         }
     }

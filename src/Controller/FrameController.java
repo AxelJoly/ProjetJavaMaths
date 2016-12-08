@@ -2,8 +2,10 @@ package Controller;
 
 import Main.Main;
 import Model.Complexe;
+import Model.Echantillonage;
 import Model.Nombre;
 import View.Frame;
+import org.apache.log4j.pattern.IntegerPatternConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,10 +15,12 @@ import org.slf4j.LoggerFactory;
 public class FrameController {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
     public Frame frame = null;
-    private Nombre nombre = null;
+    private Echantillonage echantillonage = null;
+    private Complexe tab[] = null;
 
-    public FrameController(Nombre nombre){
-        this.nombre =nombre;
+
+    public FrameController(Complexe tab[]){
+       this.tab =tab;
     }
 
     public Frame getFrame() {
@@ -40,10 +44,22 @@ public class FrameController {
 
     }
 
-    public void notifyNombreChanged(Complexe[] tabComp, double taille) {
+    public Echantillonage getEchantillonage() {
+        return echantillonage;
+    }
 
-        this.nombre.setTaille(taille);
-        System.out.println(taille);
+    public void setEchantillonage(Echantillonage echantillonage) {
+        this.echantillonage = echantillonage;
+    }
+
+    public void notifyNombreChanged(Complexe tabComp[], Integer nbValeur, Integer nbEchantillonage ) {
+
+        echantillonage = new Echantillonage(nbEchantillonage, 4, tabComp);
+        echantillonage.rempliTab0();
+        echantillonage.calculColonneAj();
+        echantillonage.selectioneAj();
+        echantillonage.moduleAj();
+        System.out.println(nbValeur + " " + nbEchantillonage);
 
     }
 }
