@@ -26,12 +26,19 @@ public class Frame implements ActionListener{
     private JSpinner spinner = null;
     private JComboBox powList = null;
     private JLabel labelAChanger = null;
-    private Complexe[] tab = null;
+    //private Complexe[] tab = null;
     private Result result = null;
     private Echantillonage echantillonage = null;
 
-    public Frame(Complexe[] tab, FrameController controller){
+
+    public Frame(Complexe[] tab, FrameController controller) {
         this.tab = tab;
+    }
+    public Frame(FrameController controller){
+       /* this.tab = tab;
+        for(int i=0; i< 4; i++) {
+            this.tab[i].addObserver(this);
+        }*/
 
 
         this.controller = controller;
@@ -129,7 +136,7 @@ public class Frame implements ActionListener{
         Integer nbValeur = (Integer) spinner.getValue();
         System.out.println(nbEchantillonage);
         System.out.println(nbValeur);
-       this.controller.notifyNombreChanged(this.tab, nbValeur, nbEchantillonage);
+       this.controller.notifyNombreChanged(nbValeur, nbEchantillonage);
         result = new Result(this.controller.getEchantillonage(), nbValeur);
         result.display();
     }

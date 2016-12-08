@@ -45,11 +45,11 @@ public class Result implements ActionListener{
         buttonGraph = new JButton("Graphique");
         fPane.add(buttonGraph, BorderLayout.SOUTH);
         Complexe[][] tabComplexe = echantillonage.getMatrice();
-        String[] tab = null;
+        String[] tab=new String[1000];
         for(int i = 0; i< echantillonage.getNbPoints()/echantillonage.getEchantillonage(); i++)
         {
-            for(int j = 0; j < Math.pow(2, taille); j++){
-                tab[i] = tab[i] + tabComplexe[i][j];
+            for(int j = 0; j < echantillonage.getEchantillonage(); j++){
+                tab[i] = tab[i] ;
             }
         }
         JList list = new JList(tab); //data has type Object[]

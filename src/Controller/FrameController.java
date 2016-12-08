@@ -16,11 +16,12 @@ public class FrameController {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
     public Frame frame = null;
     private Echantillonage echantillonage = null;
-    private Complexe tab[] = null;
+    //private Complexe tab[] = null;
+    private double increment ;
+
+    public FrameController(){
 
 
-    public FrameController(Complexe tab[]){
-       this.tab =tab;
     }
 
     public Frame getFrame() {
@@ -52,14 +53,31 @@ public class FrameController {
         this.echantillonage = echantillonage;
     }
 
-    public void notifyNombreChanged(Complexe tabComp[], Integer nbValeur, Integer nbEchantillonage ) {
+    public void notifyNombreChanged(Integer nbValeur, Integer nbEchantillonage ) {
+        double il;
+        int compt=0;
+        increment=3.14/nbValeur;
+        Complexe[] tab2 = new Complexe[1000];
+        il=-(3.14/2);
+        while(il<3.14/2){
 
-        echantillonage = new Echantillonage(nbEchantillonage, 4, tabComp);
+            tab2[compt] = new Complexe(Math.sin(il), 0);
+            il=il+increment;
+            compt++;
+        }
+
+        echantillonage = new Echantillonage(nbEchantillonage, nbValeur, tab2);
         echantillonage.rempliTab0();
         echantillonage.calculColonneAj();
+
+        for(int j=0;j<echantillonage.getNbFenetre(); j++) {
+            for (int i = 0; i < nbEchantillonage/2; i++) {
+                LOGGER.info(echantillonage.getMatrice()[j][i].toString());
+            }
+        }
         echantillonage.selectioneAj();
         echantillonage.moduleAj();
-        System.out.println(nbValeur + " " + nbEchantillonage);
+        //System.out.println(nbValeur + " " + nbEchantillonage);
 
     }
 }
