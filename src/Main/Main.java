@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
+
     public Main() {
 
     }
@@ -28,13 +29,19 @@ public class Main {
 
 
     public static void main (String args[]){
-
-
+        int  compt=0;
+        double il;
+        double increment ;
+        increment=3.14/16;
         Complexe[] tab = {new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0)};
         Complexe[] result;
         Complexe[] tab2 = new Complexe[1000];
-        for(int i=0;i<16;i++) {
-            tab2[i] = new Complexe(i, 0);
+        il=-(3.14/2);
+        while(il<3.14/2){
+
+            tab2[compt] = new Complexe(Math.sin(il), 0);
+            il=il+increment;
+            compt++;
         }
         Echantillonage ech=new Echantillonage(4,16,tab2);
         ech.rempliTab0();

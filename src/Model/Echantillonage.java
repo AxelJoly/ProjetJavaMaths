@@ -20,7 +20,9 @@ public class Echantillonage {
         this.nbPoints=nbPoints;
         this.tabPts=tabPts;
         this.nb=new Nombre(2);
-        this.matrice=new Complexe[100][100];
+        this.matrice=new Complexe[nbPoints+echantillonage][echantillonage+1];
+
+
 
 
     }
