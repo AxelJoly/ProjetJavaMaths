@@ -45,15 +45,26 @@ public class Main {
             }
         }
         ech.selectioneAj();
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("vibouille est un enfant");
+        for(int j=0;j<(ech.getNbPoints()/ech.getEchantillonage());j++) {
+            for (int i = 0; i < (ech.getEchantillonage())/2; i++) {
+                LOGGER.info(ech.getMatrice()[j][i].toString());
+            }
+        }
+
+
+
 
         Nombre re = new Nombre(2);
        result = re.calculFourierRapide(tab);
 
         int length = result.length;
 
-        for (int i = 0; i < length; i++){
+      /*  for (int i = 0; i < length; i++){
             LOGGER.info(result[i].toString());
-        }
+        }*/
         FrameController controller = new FrameController(re);
         Thread music = new Thread(new MusicThread());
        // music.start();
