@@ -1,9 +1,14 @@
 package View;
 
+import Controller.FrameController;
+import Model.Complexe;
+import Model.Nombre;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 import java.text.NumberFormat;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,22 +17,28 @@ import java.util.Observer;
  * Created by axel on 06/12/2016.
  */
 public class Frame implements ActionListener, Observer {
-
+    private FrameController controller = null;
     private JFrame frame = null;
     private JPanel fPane = null;
     private JButton button = null;
     private NumberFormat format = null;
     private JSpinner spinner = null;
     private JComboBox powList = null;
+    private JLabel labelAChanger = null;
+    private Complexe[] tab = {new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0), new Complexe(1, 0)};
+    private Nombre nombre = null;
 
-    public Frame(){
+    public Frame(Nombre nombre, FrameController controller){
+        this.nombre = nombre;
+        this.nombre.addObserver(this);
+        this.controller = controller;
         buildFrame();
     }
 
     private void buildFrame() {
         frame = new JFrame();
         fPane = new JPanel();
-
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JMenuBar m=new JMenuBar();
         JMenu menu1=new JMenu ("Fichier");
         JMenu menu2=new JMenu ("Edition");
@@ -90,6 +101,8 @@ public class Frame implements ActionListener, Observer {
         bPane.add(button);
         button.addActionListener(this);
 
+        labelAChanger = new JLabel("Valeur a changer");
+        bPane.add(labelAChanger, BorderLayout.CENTER);
         fPane.add(tPane);
         fPane.add(bPane);
         frame.setContentPane(fPane);
@@ -109,17 +122,17 @@ public class Frame implements ActionListener, Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-      //  this.controller.notifyVolumeChanged(Integer.parseInt(this.spinner.getValue().toString()));
+        Integer nb = (Integer) powList.getSelectedItem();
+       this.controller.notifyNombreChanged(this.tab, nb);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg instanceof Integer) {
-            spinner.setValue((Integer) arg);
-            powList.setSelectedIndex((Integer) arg);
+     //  if (arg instanceof Double) {
+            labelAChanger.setText(arg.toString()); // juste pour essayer
+
             System.out.println("[Frame] : update");
-        }
+      //  }
     }
 
 }

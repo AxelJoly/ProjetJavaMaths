@@ -2,10 +2,12 @@ package Model;
 
 import Model.Complexe;
 
+import java.util.Observable;
+
 /**
  * Created by maxim on 05/12/2016.
  */
-public class  Nombre {
+public class  Nombre extends Observable{
     protected double taille;
     protected Complexe[] aj;
 
@@ -79,6 +81,13 @@ public class  Nombre {
         }
 
         return uk;
+
+    }
+
+    public void setTaille(double taille){
+        this.taille = taille;
+        setChanged();
+        notifyObservers(this.taille);
 
     }
 }
