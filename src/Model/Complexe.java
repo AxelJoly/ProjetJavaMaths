@@ -9,7 +9,7 @@ import java.util.Observable;
 /**
  * Created by maxim on 05/12/2016.
  */
-public class Complexe extends Observable{
+public class Complexe {
     private final double re;   // La partie réel
     private final double im;   // La partie imaginaire
 

@@ -17,7 +17,7 @@ import java.util.Observer;
 /**
  * Created by axel on 06/12/2016.
  */
-public class Frame implements ActionListener, Observer {
+public class Frame implements ActionListener{
     private FrameController controller = null;
     private JFrame frame = null;
     private JPanel fPane = null;
@@ -32,9 +32,7 @@ public class Frame implements ActionListener, Observer {
 
     public Frame(Complexe[] tab, FrameController controller){
         this.tab = tab;
-        for(int i=0; i< tab.length; i++) {
-            this.tab[i].addObserver(this);
-        }
+
 
         this.controller = controller;
         buildFrame();
@@ -136,13 +134,6 @@ public class Frame implements ActionListener, Observer {
         result.display();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-     //  if (arg instanceof Double) {
-            labelAChanger.setText(arg.toString()); // juste pour essayer
 
-            System.out.println("[Frame] : update");
-      //  }
-    }
 
 }

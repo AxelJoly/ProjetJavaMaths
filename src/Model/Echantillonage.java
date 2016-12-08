@@ -9,7 +9,7 @@ import java.util.Observable;
  * Created by maxim on 07/12/2016.
  */
 
-public class Echantillonage extends Observable{
+public class Echantillonage{
     protected Complexe matrice[][];
     protected int echantillonage;
     protected int nbPoints ;
@@ -23,8 +23,7 @@ public class Echantillonage extends Observable{
         this.tabPts=tabPts;
         this.nb=new Nombre(2);
         this.matrice=new Complexe[nbPoints+echantillonage][echantillonage+1];
-        setChanged();
-        notifyObservers(this.tabPts);
+
 
 
 
@@ -34,7 +33,7 @@ public class Echantillonage extends Observable{
         Complexe temp;
         temp=new Complexe(0,0);
 
-        for(int k=this.nbPoints;k>0;k--){
+        for(int k = (this.nbPoints)+1;k>0;k--){
             System.out.println(k);
             this.tabPts[k]=this.tabPts[k-1];
 
@@ -102,8 +101,7 @@ public class Echantillonage extends Observable{
           for(i=0;i<compt3;i++){
                this.nbPoints++;
            }
-        setChanged();
-        notifyObservers(this.matrice);
+
     }
 
 
@@ -123,8 +121,7 @@ public class Echantillonage extends Observable{
                 this.matrice[i][j]=(this.matrice[i][j]).abs();
             }
         }
-        setChanged();
-        notifyObservers(this.matrice);
+
     }
 
 

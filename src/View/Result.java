@@ -16,13 +16,15 @@ import java.util.Observer;
 /**
  * Created by axel on 07/12/2016.
  */
-public class Result implements ActionListener, Observer{
+public class Result implements ActionListener{
 
         private JFrame frame = null;
         private JPanel fPane = null;
         private JButton button = null;
+    private JButton buttonGraph = null;
         private Echantillonage echantillonage = null;
         private Integer taille = null;
+
     public Result(Echantillonage echantillonage, Integer taille){
         this.echantillonage = echantillonage;
 
@@ -40,6 +42,8 @@ public class Result implements ActionListener, Observer{
 
         button = new JButton("Quitter");
         fPane.add(button, BorderLayout.SOUTH);
+        buttonGraph = new JButton("Graphique");
+        fPane.add(buttonGraph, BorderLayout.SOUTH);
         Complexe[][] tabComplexe = echantillonage.getMatrice();
         String[] tab = null;
         for(int i = 0; i< echantillonage.getNbPoints()/echantillonage.getEchantillonage(); i++)
@@ -71,6 +75,13 @@ public class Result implements ActionListener, Observer{
         ChartFrame frame=new ChartFrame("First",chart);
          */
         button.addActionListener(this);
+        buttonGraph.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            Graphique  graphique = new Graphique(getEchantillonage(), getTaille());
+                graphique.display();
+            }
+        });
         frame.setContentPane(fPane);
         frame.setTitle("Projet Java Maths");
         frame.pack();
@@ -94,11 +105,19 @@ public class Result implements ActionListener, Observer{
         close();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        if (arg instanceof Integer) {
+    public Echantillonage getEchantillonage() {
+        return echantillonage;
+    }
 
-            System.out.println("[Frame] : update");
-        }
+    public void setEchantillonage(Echantillonage echantillonage) {
+        this.echantillonage = echantillonage;
+    }
+
+    public Integer getTaille() {
+        return taille;
+    }
+
+    public void setTaille(Integer taille) {
+        this.taille = taille;
     }
 }
