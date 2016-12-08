@@ -6,7 +6,7 @@ import Model.Complexe;
 import Model.MusicThread;
 import Model.Nombre;
 import Model.Echantillonage;
-
+import Model.ReadFiles;
 import View.Frame;
 
 import org.slf4j.Logger;
@@ -30,6 +30,7 @@ public class Main {
 
     public static void main (String args[]){
         int  compt=0;
+        int taille;
         double il;
         double increment ;
         increment=3.14/16;
@@ -75,7 +76,36 @@ public class Main {
 
         Nombre re = new Nombre(2);
        result = re.calculFourierRapide(tab);
-
+        LOGGER.info("tab fichier texte");
+        Complexe[] tab3 = new Complexe[1000];
+        ReadFiles read=new ReadFiles();
+        taille=read.main(tab3);
+        Echantillonage ech2=new Echantillonage(4,taille,tab2);
+        ech2.rempliTab0();
+        ech2.calculColonneAj();
+        for(int j=0;j<(ech2.getNbPoints()/ech2.getEchantillonage()); j++) {
+            for (int i = 0; i < ech2.getEchantillonage(); i++) {
+                LOGGER.info(ech2.getMatrice()[j][i].toString());
+            }
+        }
+        ech2.selectioneAj();
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("vibouille est un enfant");
+        for(int j=0;j<(ech2.getNbPoints()/ech2.getEchantillonage());j++) {
+            for (int i = 0; i < (ech2.getEchantillonage())/2; i++) {
+                LOGGER.info(ech2.getMatrice()[j][i].toString());
+            }
+        }
+        ech2.moduleAj();
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("vibouille est un enfant");
+        LOGGER.info("vibouille est un enfant");
+        for(int j=0;j<(ech2.getNbPoints()/ech2.getEchantillonage());j++) {
+            for (int i = 0; i < (ech2.getEchantillonage())/2; i++) {
+                LOGGER.info(ech2.getMatrice()[j][i].toString());
+            }
+        }
         int length = result.length;
 
       /*  for (int i = 0; i < length; i++){
