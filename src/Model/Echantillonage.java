@@ -17,7 +17,7 @@ public class Echantillonage {
     protected int nbFenetre;
     protected Complexe tabPts[];
     protected Nombre nb;
-
+    //Constructeur
     public Echantillonage (int echantillonage,int nbPoints,Complexe tabPts[]){
         this.echantillonage=echantillonage;
         this.nbPoints=nbPoints;
@@ -30,6 +30,7 @@ public class Echantillonage {
 
 
     }
+    //On remplie le tableau de points avec un 0 au début
     public void rempliTab0(){
         int i,compt;
         Complexe temp;
@@ -43,9 +44,10 @@ public class Echantillonage {
         tabPts[0]= new Complexe(0,0);
         this.nbPoints=this.nbPoints+1;
 
-        LOGGER.debug("this.nbpoints = "+this.nbPoints);
+        //LOGGER.debug("this.nbpoints = "+this.nbPoints);
 
     }
+    //On calcul pour chaque fenetre les coefficients aj
     public void calculColonneAj(){
         int i,j,compt,compt2,compt3;
         Complexe temp[]=new Complexe[this.echantillonage];
@@ -57,14 +59,14 @@ public class Echantillonage {
             compt=0;
 
             for(j=(i);j<i+(this.echantillonage);j++){
-                if(tabPts[j]==null){
+                if(tabPts[j]==null){//Si dans la fenetre il manque des points on complete avec des zeros
                     tabPts[j]=new Complexe(0,0);
                     //this.nbPoints++;
                     compt3++;
                 }
                 temp[compt]=tabPts[j];
-               LOGGER.debug("j="+j);
-                LOGGER.debug("compt="+compt);
+               /*LOGGER.debug("j="+j);
+                LOGGER.debug("compt="+compt);*/
 
                 compt++;
             }
@@ -81,7 +83,7 @@ public class Echantillonage {
             this.nbPoints++;
         }
     }
-    public void selectioneAj(){
+    public void selectioneAj(){//On selectionne seulement les aj appartenant  à [0;L/2]
         for(int i=0;i<this.nbPoints/this.echantillonage;i++){
             for(int j=0;j<(this.echantillonage)/2;j++){
                 this.matrice[i][j]=this.matrice[i][this.echantillonage-1-j];
@@ -91,7 +93,7 @@ public class Echantillonage {
 
 
     }
-    public void moduleAj(){
+    public void moduleAj(){//On fait le module des aj
         for(int i=0;i<this.nbFenetre;i++){
             for(int j=0;j<(this.echantillonage)/2;j++){
                 this.matrice[i][j]=(this.matrice[i][j]).abs();

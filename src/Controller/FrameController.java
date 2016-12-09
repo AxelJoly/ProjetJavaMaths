@@ -4,6 +4,7 @@ import Main.Main;
 import Model.Complexe;
 import Model.Echantillonage;
 import Model.Nombre;
+import Model.ReadFiles;
 import View.Frame;
 import org.apache.log4j.pattern.IntegerPatternConverter;
 import org.slf4j.Logger;
@@ -53,18 +54,33 @@ public class FrameController {
         this.echantillonage = echantillonage;
     }
 
-    public void notifyNombreChanged(Integer nbValeur, Integer nbEchantillonage ) {
+    public void notifyNombreChanged(Integer nbValeur, Integer nbEchantillonage, int bo ) {
         double il;
         int compt=0;
+        int taille = 0;
         increment=3.14/nbValeur;
         Complexe[] tab2 = new Complexe[1000];
-        il=-(3.14/2);
-        while(il<3.14/2){
 
-            tab2[compt] = new Complexe(Math.sin(il), 0);
-            il=il+increment;
-            compt++;
+        if(bo==1) {
+            il = -(3.14 / 2);
+            while (il < 3.14 / 2) {
+
+                tab2[compt] = new Complexe(Math.sin(il), 0);
+                il = il + increment;
+                compt++;
+            }
         }
+        else{
+            ReadFiles read=new ReadFiles();
+            taille=read.main(tab2);
+            System.out.println("text");
+            if(nbValeur>taille){
+                nbValeur=taille;
+            }
+
+
+        }
+
 
         echantillonage = new Echantillonage(nbEchantillonage, nbValeur, tab2);
         echantillonage.rempliTab0();
