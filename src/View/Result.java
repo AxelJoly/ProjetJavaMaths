@@ -42,10 +42,10 @@ public class Result implements ActionListener, Observer{
         fPane.add(button, BorderLayout.SOUTH);
         Complexe[][] tabComplexe = echantillonage.getMatrice();
         String[] tab=new String[1000];
-        for(int i = 0; i< echantillonage.getNbPoints()/echantillonage.getEchantillonage(); i++)
+        for(int i = 0; i< echantillonage.getNbFenetre(); i++)
         {
             for(int j = 0; j < echantillonage.getEchantillonage(); j++){
-                tab[i] = tab[i] ;
+                tab[i] = tab[i]+tabComplexe[i][j] ;
             }
         }
         JList list = new JList(tab); //data has type Object[]
