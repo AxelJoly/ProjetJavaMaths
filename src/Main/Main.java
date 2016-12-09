@@ -32,7 +32,7 @@ public class Main {
 
         FrameController controller = new FrameController();
         Thread music = new Thread(new MusicThread());
-       //music.start();
+       music.start();
 
         Frame frame = new Frame(controller);
         controller.init(frame);

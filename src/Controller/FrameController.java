@@ -73,7 +73,7 @@ public class FrameController {
         else{
             ReadFiles read=new ReadFiles();
             taille=read.main(tab2);
-            System.out.println("text");
+            //System.out.println("text");
             if(nbValeur>taille){
                 nbValeur=taille;
             }
@@ -86,13 +86,14 @@ public class FrameController {
         echantillonage.rempliTab0();
         echantillonage.calculColonneAj();
 
+
+        echantillonage.selectioneAj();
+        echantillonage.moduleAj();
         for(int j=0;j<echantillonage.getNbFenetre(); j++) {
             for (int i = 0; i < nbEchantillonage/2; i++) {
                 LOGGER.info(echantillonage.getMatrice()[j][i].toString());
             }
         }
-        echantillonage.selectioneAj();
-        echantillonage.moduleAj();
         //System.out.println(nbValeur + " " + nbEchantillonage);
 
     }

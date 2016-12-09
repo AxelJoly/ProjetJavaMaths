@@ -139,8 +139,7 @@ public class Frame implements ActionListener, Observer {
     public void actionPerformed(ActionEvent e) {
         Integer nbEchantillonage = (Integer) powList.getSelectedItem();
         Integer nbValeur = (Integer) spinner.getValue();
-        System.out.println(nbEchantillonage);
-        System.out.println(nbValeur);
+       
        this.controller.notifyNombreChanged(nbValeur, nbEchantillonage, bo);
         result = new Result(this.controller.getEchantillonage(), nbValeur);
         result.display();
@@ -151,7 +150,7 @@ public class Frame implements ActionListener, Observer {
      //  if (arg instanceof Double) {
             labelAChanger.setText(arg.toString()); // juste pour essayer
 
-            System.out.println("[Frame] : update");
+           // System.out.println("[Frame] : update");
       //  }
     }
 
