@@ -120,7 +120,10 @@ public class Complexe extends Observable{
         return sum;
     }
 
-    // test si deux complexes sont égaux 
+    public double getRe() {
+        return re;
+    }
+    // test si deux complexes sont égaux
     /*public boolean equals(Object x) {
         if (x == null) return false;
         if (this.getClass() != x.getClass()) return false;

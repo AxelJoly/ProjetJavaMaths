@@ -6,8 +6,9 @@ import java.io.*;
 public class ReadFiles {
     public int main(Complexe[]  tab){
         String chaine="";
-        int compt;
+        int compt,compt2,compt3;
         int taille=0;
+        int re,im;
         String fichier ="fichiertexte.txt";
 
         //lecture du fichier texte
@@ -16,15 +17,29 @@ public class ReadFiles {
             InputStreamReader ipsr=new InputStreamReader(ips);
             BufferedReader br=new BufferedReader(ipsr);
             String ligne;
-            compt=0;
+            compt=2;
+            compt2=0;
+            compt3=0;
+            re=0;
             while ((ligne=br.readLine())!=null){
-                if (compt == 0) {
-                    taille = Integer.parseInt(ligne);
+                if(compt3==0){
+                    taille=Integer.parseInt(ligne);
                 }
                 else {
-                    tab[compt] = new Complexe(Integer.parseInt(ligne), 0);
+                    if (compt % 2 == 0) {
+                        re = Integer.parseInt(ligne);
+                    } else {
+                        im = Integer.parseInt(ligne);
+                        tab[compt2] = new Complexe(re, im);
+                        compt2++;
+                    }
+                    compt++;
                 }
-                compt++;
+                compt3++;
+
+
+
+
                 System.out.println(ligne);
                 chaine+=ligne+"\n";
 

@@ -21,8 +21,10 @@ public class Result implements ActionListener, Observer{
         private JFrame frame = null;
         private JPanel fPane = null;
         private JButton button = null;
+        private JButton button2 = null;
         private Echantillonage echantillonage = null;
         private Integer taille = null;
+        private Graphique graph = null;
     public Result(Echantillonage echantillonage, Integer taille){
         this.echantillonage = echantillonage;
 
@@ -40,6 +42,8 @@ public class Result implements ActionListener, Observer{
 
         button = new JButton("Quitter");
         fPane.add(button, BorderLayout.SOUTH);
+        button2 = new JButton("Graphique");
+        fPane.add(button2, BorderLayout.SOUTH);
         Complexe[][] tabComplexe = echantillonage.getMatrice();
         String[] tab=new String[1000];
         for(int i = 0; i< echantillonage.getNbFenetre(); i++)
@@ -71,6 +75,14 @@ public class Result implements ActionListener, Observer{
         ChartFrame frame=new ChartFrame("First",chart);
          */
         button.addActionListener(this);
+        button2.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0) {
+                graph = new Graphique(getEchantillonage(), getTaille());
+                graph.display();
+
+            }
+        });
+
         frame.setContentPane(fPane);
         frame.setTitle("Projet Java Maths");
         frame.pack();
@@ -100,5 +112,21 @@ public class Result implements ActionListener, Observer{
 
             System.out.println("[Frame] : update");
         }
+    }
+
+    public Echantillonage getEchantillonage() {
+        return echantillonage;
+    }
+
+    public void setEchantillonage(Echantillonage echantillonage) {
+        this.echantillonage = echantillonage;
+    }
+
+    public Integer getTaille() {
+        return taille;
+    }
+
+    public void setTaille(Integer taille) {
+        this.taille = taille;
     }
 }

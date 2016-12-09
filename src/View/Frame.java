@@ -29,12 +29,11 @@ public class Frame implements ActionListener, Observer {
     //private Complexe[] tab = null;
     private Result result = null;
     private Echantillonage echantillonage = null;
+    private int bo = 1;
 
     public Frame(FrameController controller){
-       /* this.tab = tab;
-        for(int i=0; i< 4; i++) {
-            this.tab[i].addObserver(this);
-        }*/
+
+
 
         this.controller = controller;
         buildFrame();
@@ -61,8 +60,19 @@ public class Frame implements ActionListener, Observer {
         menu2.add(annuler);
         JMenuItem load= new JMenuItem("Charger le .txt");
         menu1.add(load);
+        load.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0) {
+                bo=0;
+            }
+        });
         menu1.addSeparator();
         JMenuItem quitter = new JMenuItem("Quitter");
+        quitter.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0) {
+
+
+            }
+        });
         menu1.add(quitter);
         m.add(menu1);
         m.add(menu2);
@@ -131,7 +141,7 @@ public class Frame implements ActionListener, Observer {
         Integer nbValeur = (Integer) spinner.getValue();
         System.out.println(nbEchantillonage);
         System.out.println(nbValeur);
-       this.controller.notifyNombreChanged(nbValeur, nbEchantillonage);
+       this.controller.notifyNombreChanged(nbValeur, nbEchantillonage, bo);
         result = new Result(this.controller.getEchantillonage(), nbValeur);
         result.display();
     }

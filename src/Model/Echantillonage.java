@@ -2,12 +2,15 @@ package Model;
 
 import Model.Complexe;
 import Model.Nombre;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by maxim on 07/12/2016.
  */
 
 public class Echantillonage {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Echantillonage.class);
     protected Complexe matrice[][];
     protected int echantillonage;
     protected int nbPoints ;
@@ -40,38 +43,19 @@ public class Echantillonage {
         tabPts[0]= new Complexe(0,0);
         this.nbPoints=this.nbPoints+1;
 
-       /* if((nbPoints%this.echantillonage)==0){
-            this.nbFenetre=(this.nbPoints)/(this.echantillonage);
-            System.out.println("this.nbfenetre"+this.nbFenetre);
-        }
-        else{
-            this.nbFenetre=(this.nbPoints)/(this.echantillonage)+1;
-        }
-        if((this.nbPoints+(this.nbFenetre)-1)%echantillonage!=0) {
-
-            nbFenetre++;
-        }
-        compt=1;*/
-       /* while(this.nbPoints%this.echantillonage!=0){
-
-            this.tabPts[compt+this.nbPoints]= new Complexe(0,0);
-            this.nbPoints++;
-            compt++;
-
-        }*/
-        System.out.println("this.nbpoitns"+this.nbPoints);
+        LOGGER.debug("this.nbpoints = "+this.nbPoints);
 
     }
     public void calculColonneAj(){
         int i,j,compt,compt2,compt3;
         Complexe temp[]=new Complexe[this.echantillonage];
         Complexe temp2;
-        //System.out.println("nbPoints="+this.nbPoints);
+
         compt2=0;
         compt3=0;
         for(i=0;i<this.nbPoints;i=(i+this.echantillonage)-1){
             compt=0;
-            //System.out.println("i="+i);
+
             for(j=(i);j<i+(this.echantillonage);j++){
                 if(tabPts[j]==null){
                     tabPts[j]=new Complexe(0,0);
@@ -79,10 +63,9 @@ public class Echantillonage {
                     compt3++;
                 }
                 temp[compt]=tabPts[j];
-                System.out.println("j="+j);
-                System.out.println("compt="+compt);
+               LOGGER.debug("j="+j);
+                LOGGER.debug("compt="+compt);
 
-                System.out.println(temp[compt]);
                 compt++;
             }
 
@@ -106,10 +89,10 @@ public class Echantillonage {
             }
         }
 
-        //this.echantillonage=(this.echantillonage)/2;
+
     }
     public void moduleAj(){
-        for(int i=0;i<this.nbPoints/this.echantillonage;i++){
+        for(int i=0;i<this.nbFenetre;i++){
             for(int j=0;j<(this.echantillonage)/2;j++){
                 this.matrice[i][j]=(this.matrice[i][j]).abs();
             }
