@@ -44,8 +44,8 @@ public class Result implements ActionListener, Observer{
         String[] tab=new String[1000];
         for(int i = 0; i< echantillonage.getNbFenetre(); i++)
         {
-            for(int j = 0; j < echantillonage.getEchantillonage(); j++){
-                tab[i] = tab[i]+tabComplexe[i][j] ;
+            for(int j = 0; j < (echantillonage.getEchantillonage())/2; j++){
+                tab[i] = tabComplexe[i][j].toString() ;
             }
         }
         JList list = new JList(tab); //data has type Object[]
